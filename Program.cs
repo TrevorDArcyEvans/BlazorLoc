@@ -2,6 +2,8 @@ using BlazorLoc.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddLocalization();
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
   .AddInteractiveServerComponents();
@@ -16,8 +18,15 @@ if (!app.Environment.IsDevelopment())
   app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+var supportedCultures = new[] { "en-GB", "es-ES" };
+var localizationOptions = new RequestLocalizationOptions()
+  .SetDefaultCulture(supportedCultures[0])
+  .AddSupportedCultures(supportedCultures)
+  .AddSupportedUICultures(supportedCultures);
 
+app.UseRequestLocalization(localizationOptions);
+
+app.UseHttpsRedirection();
 
 app.UseAntiforgery();
 
