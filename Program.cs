@@ -18,7 +18,7 @@ if (!app.Environment.IsDevelopment())
   app.UseHsts();
 }
 
-var supportedCultures = new[] { "en-GB", "es-ES" };
+var supportedCultures = new[] { "en-GB", "es-ES", "de-DE" };
 var localizationOptions = new RequestLocalizationOptions()
   .SetDefaultCulture(supportedCultures[0])
   .AddSupportedCultures(supportedCultures)
